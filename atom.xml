@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-10T07:05:53.489Z</updated>
+  <updated>2018-04-10T07:07:09.946Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -17,20 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
+    <title>立即执行函数</title>
     <link href="https://AlenLee-geek.github.io.git/2018/04/10/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0/"/>
     <id>https://AlenLee-geek.github.io.git/2018/04/10/立即执行函数/</id>
     <published>2018-04-10T06:55:15.795Z</published>
-    <updated>2018-04-10T07:05:53.489Z</updated>
+    <updated>2018-04-10T07:07:09.946Z</updated>
     
-    <content type="html"><![CDATA[<p>javascript的立即执行函数</p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;javascript的立即执行函数&lt;/p&gt;
-
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
       
     
     </summary>
