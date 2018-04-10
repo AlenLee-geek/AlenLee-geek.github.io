@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-10T06:43:52.968Z</updated>
+  <updated>2018-04-10T06:50:13.097Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -21,16 +21,17 @@
     <link href="https://AlenLee-geek.github.io.git/2018/04/10/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0/"/>
     <id>https://AlenLee-geek.github.io.git/2018/04/10/立即执行函数/</id>
     <published>2018-04-10T06:39:04.000Z</published>
-    <updated>2018-04-10T06:43:52.968Z</updated>
+    <updated>2018-04-10T06:50:13.097Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="深入理解js立即执行函数"><a href="#深入理解js立即执行函数" class="headerlink" title="#深入理解js立即执行函数"></a>#深入理解js立即执行函数</h2><blockquote><p>任何一个第三方库都会存在大量的变量和函数，为了避免变量污染(命名冲突)，使用立即执行函数规避这个问题。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="深入理解js立即执行函数"><a href="#深入理解js立即执行函数" class="headerlink" title="深入理解js立即执行函数"></a>深入理解js立即执行函数</h1><hr><blockquote><p>任何一个第三方库都会存在大量的变量和函数，为了避免变量污染(命名冲突)，使用立即执行函数规避这个问题。</p></blockquote>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;深入理解js立即执行函数&quot;&gt;&lt;a href=&quot;#深入理解js立即执行函数&quot; class=&quot;headerlink&quot; title=&quot;#深入理解js立即执行函数&quot;&gt;&lt;/a&gt;#深入理解js立即执行函数&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;任何一个第三方库都会存在大量的
+        &lt;h1 id=&quot;深入理解js立即执行函数&quot;&gt;&lt;a href=&quot;#深入理解js立即执行函数&quot; class=&quot;headerlink&quot; title=&quot;深入理解js立即执行函数&quot;&gt;&lt;/a&gt;深入理解js立即执行函数&lt;/h1&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;任何一个第三方库都会存在
       
     
     </summary>
