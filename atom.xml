@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-11T03:34:24.989Z</updated>
+  <updated>2018-04-11T04:00:49.175Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>List</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/11/List/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/11/List/</id>
+    <published>2018-04-11T03:42:44.000Z</published>
+    <updated>2018-04-11T04:00:49.175Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>列表的抽象数据类型定义<br>为了设计列表的抽象数据类型，需要给出列表的定义，包括列表应该拥有哪些属性，应该在列表上执行哪些操作。<br>列表是一组有序的数据，每个列表中的数据项称为元素。在JavaScript中，列表中元素可以是任意数据类型，<br>类表中可以保存多少元素并没有事先限定，实际使用时元素的数量受到程序内存的限制。</li><li>listSize保存列表中袁术的个数，可以在雷彪末尾append一个元素，也可以在一个给定元素后或列表的其实位置insert<br>一个元素，使用remove方法从列表中删除元素，使用clear方法清空列表中所有的元素。</li><li>toString()方法显示列表中所有的元素，使用getElement()方法显示当前元素。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;列表的抽象数据类型定义&lt;br&gt;为了设计列表的抽象数据类型，需要给出列表的定义，包括列表应该拥有哪些属性，应该在列表上执行哪些操作。&lt;br&gt;列表是一组有序的数据，每个列表中的数据项称为元素。在JavaScript中，列表中元素可以是任意数据类型，&lt;br&gt;类表中可以
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Array</title>
     <link href="https://AlenLee-geek.github.io.git/2018/04/11/Array/"/>
     <id>https://AlenLee-geek.github.io.git/2018/04/11/Array/</id>
     <published>2018-04-11T02:19:47.000Z</published>
-    <updated>2018-04-11T03:34:24.989Z</updated>
+    <updated>2018-04-11T04:00:51.873Z</updated>
     
     <content type="html"><![CDATA[<blockquote><h4 id="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"><a href="#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同" class="headerlink" title="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"></a>在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var objects = [1,&apos;alen&apos;,true,null];</span><br></pre></td></tr></table></figure></blockquote><blockquote><h4 id="当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，"><a href="#当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，" class="headerlink" title="当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，"></a>当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，</h4><h4 id="另外一个引用也会感知到这个变化，"><a href="#另外一个引用也会感知到这个变化，" class="headerlink" title="另外一个引用也会感知到这个变化，"></a>另外一个引用也会感知到这个变化，</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var nums = [];</span><br><span class="line">for(var i = 0;i &lt; 10;i++)&#123;</span><br><span class="line">  nums[i] =i+1;</span><br><span class="line">&#125;</span><br><span class="line">var samenums = nums;</span><br></pre></td></tr></table></figure></blockquote><blockquote><h4 id="这种行为被称为浅复制，新数组依然指向原来的数组。"><a href="#这种行为被称为浅复制，新数组依然指向原来的数组。" class="headerlink" title="这种行为被称为浅复制，新数组依然指向原来的数组。"></a>这种行为被称为浅复制，新数组依然指向原来的数组。</h4><h4 id="使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。"><a href="#使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。" class="headerlink" title="使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。"></a>使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function copy(arr1,arr2)&#123;</span><br><span class="line">  for(var i = 0; i &lt; arr1.length; ++i)&#123;</span><br><span class="line">    arr2[i] = arr1[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote><blockquote><h4 id="查找元素indexof"><a href="#查找元素indexof" class="headerlink" title="查找元素indexof(),"></a>查找元素indexof(),</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var names = [&apos;alen&apos;,&apos;jhon&apos;,&apos;Clayton&apos;];</span><br><span class="line">putstr(&apos;Enter a name to search for: &apos;);</span><br><span class="line">var name = readline();</span><br><span class="line">var position = name.indexof(name);</span><br><span class="line">if( position &gt;= 0)&#123;</span><br><span class="line">  print(&apos;Found&apos; + name + &apos; at position &apos;+ position);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  print(name + &apos;not found in array.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote><blockquote><h4 id="迭代器方法"><a href="#迭代器方法" class="headerlink" title="迭代器方法"></a>迭代器方法</h4><p>最后一组方法是迭代器方法，这些方法对数组中的每个元素一个函数，可以返回一个值，一组值或者一个新数组<br>不生成新数组的迭代器方法<br>forEach(),该方法接受一个函数作为参数，对数组中的每个元素使用该函数、<br>every(),该方法接受一个返回值为布尔类型的函数，对数组中的每一个袁术使用该函数，如果对于所有的元素，该该函数均返回true.<br>some(),方法接受一个返回值为布尔类型的函数，只要有一个元素使得该函数返回true<br>reduce()方法接受一个函数，返回一个值，该方法会从一个累加值开始，不断对累加值和数组中的后续</p><h4 id="生成新数组的迭代器方法"><a href="#生成新数组的迭代器方法" class="headerlink" title="生成新数组的迭代器方法"></a>生成新数组的迭代器方法</h4><p>有两个迭代器方法可以生成新数组；map()和filter()</p></blockquote>]]></content>
     
