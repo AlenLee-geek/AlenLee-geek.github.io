@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-11T02:22:47.115Z</updated>
+  <updated>2018-04-11T02:37:01.681Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -21,15 +21,16 @@
     <link href="https://AlenLee-geek.github.io.git/2018/04/11/Array/"/>
     <id>https://AlenLee-geek.github.io.git/2018/04/11/Array/</id>
     <published>2018-04-11T02:19:47.000Z</published>
-    <updated>2018-04-11T02:22:47.115Z</updated>
+    <updated>2018-04-11T02:37:01.681Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"><a href="#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同" class="headerlink" title="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"></a>在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var objects = [1,&apos;alen&apos;,true,null];</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<blockquote><h3 id="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"><a href="#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同" class="headerlink" title="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"></a>在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var objects = [1,&apos;alen&apos;,true,null];</span><br></pre></td></tr></table></figure></blockquote><blockquote><h3 id="当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，"><a href="#当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，" class="headerlink" title="当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，"></a>当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，</h3><h3 id="另外一个引用也会感知到这个变化，"><a href="#另外一个引用也会感知到这个变化，" class="headerlink" title="另外一个引用也会感知到这个变化，"></a>另外一个引用也会感知到这个变化，</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var nums = [];</span><br><span class="line">for(var i = 0;i &lt; 10;i++)&#123;</span><br><span class="line">  nums[i] =i+1;</span><br><span class="line">&#125;</span><br><span class="line">var samenums = nums;</span><br></pre></td></tr></table></figure></blockquote><blockquote><h3 id="这种行为被称为浅复制，新数组依然指向原来的数组。"><a href="#这种行为被称为浅复制，新数组依然指向原来的数组。" class="headerlink" title="这种行为被称为浅复制，新数组依然指向原来的数组。"></a>这种行为被称为浅复制，新数组依然指向原来的数组。</h3><h3 id="使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。"><a href="#使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。" class="headerlink" title="使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。"></a>使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function copy(arr1,arr2)&#123;</span><br><span class="line">  for(var i = 0; i &lt; arr1.length; ++i)&#123;</span><br><span class="line">    arr2[i] = arr1[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同&quot;&gt;&lt;a href=&quot;#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同&quot; class=&quot;headerlink&quot; title=&quot;在脚
+        &lt;blockquote&gt;
+&lt;h3 id=&quot;在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同&quot;&gt;&lt;a href=&quot;#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同&quot; class=&quot;headerli
       
     
     </summary>
