@@ -182,6 +182,10 @@
 <blockquote>
 <h4 id="查找元素indexof"><a href="#查找元素indexof" class="headerlink" title="查找元素indexof(),"></a>查找元素indexof(),</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var names = [&apos;alen&apos;,&apos;jhon&apos;,&apos;Clayton&apos;];</span><br><span class="line">putstr(&apos;Enter a name to search for: &apos;);</span><br><span class="line">var name = readline();</span><br><span class="line">var position = name.indexof(name);</span><br><span class="line">if( position &gt;= 0)&#123;</span><br><span class="line">  print(&apos;Found&apos; + name + &apos; at position &apos;+ position);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  print(name + &apos;not found in array.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<blockquote>
+<h4 id="迭代器方法"><a href="#迭代器方法" class="headerlink" title="迭代器方法"></a>迭代器方法</h4><p>最后一组方法是迭代器方法，这些方法对数组中的每个元素一个函数，可以返回一个值，一组值或者一个新数组<br>不生成新数组的迭代器方法<br>forEach(),该方法接受一个函数作为参数，对数组中的每个元素使用该函数、<br>every(),该方法接受一个返回值为布尔类型的函数，对数组中的每一个袁术使用该函数，如果对于所有的元素，该该函数均返回true.<br>some(),方法接受一个返回值为布尔类型的函数，只要有一个元素使得该函数返回true<br>reduce()方法接受一个函数，返回一个值，该方法会从一个累加值开始，不断对累加值和数组中的后续</p>
+<h4 id="生成新数组的迭代器方法"><a href="#生成新数组的迭代器方法" class="headerlink" title="生成新数组的迭代器方法"></a>生成新数组的迭代器方法</h4><p>有两个迭代器方法可以生成新数组；map()和filter()</p>
+</blockquote>
 
     </div>
 
