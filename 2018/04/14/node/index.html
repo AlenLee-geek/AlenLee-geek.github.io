@@ -184,6 +184,15 @@
 <p>另外，可以使用以下方式加载和使用一个JSON文件</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var data = require(&apos;./data.json&apos;);</span><br></pre></td></tr></table></figure>
+<h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><blockquote>
+<p>exports对象是当前模块导出对象，用于导出导出模块公有方法和属性，别的模块通过require函数使用当前模块时得到的就是模块exports对象，以下例子中导出的一个公有方法。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.hello = function()&#123;</span><br><span class="line">  console.log(&apos;Hello World&apos;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><blockquote>
+<p>通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通 对象。如果想改为一个函数的话，可以使用以下方式。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function()&#123;</span><br><span class="line">  console.log(&apos;hello world&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码中，模块默认导出对象被替换为一个函数。</p>
 
     </div>
 
