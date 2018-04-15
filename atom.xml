@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-15T14:19:56.215Z</updated>
+  <updated>2018-04-15T14:42:37.598Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>node-buffer</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/15/node-buffer/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/15/node-buffer/</id>
+    <published>2018-04-15T14:22:16.000Z</published>
+    <updated>2018-04-15T14:42:37.598Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Buffer-数据块"><a href="#Buffer-数据块" class="headerlink" title="Buffer(数据块)"></a>Buffer(数据块)</h4><blockquote><p>JS语言自身只有字符串数据类型，没有二进制数据类型，因此NodeJS提供了一个与String对等的全局构造函数Buffer来提供对二进制数据类型，除了可以读取文件得到Buffer的实例外，还能够直接构造，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bin = new Buffer([]);//十六进制</span><br></pre></td></tr></table></figure></p></blockquote><blockquote><p>Buffer与字符串类似，除了可以用.length属性得到字节长度，还可以用【index】方式读取指定位置的字节，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin[0] = 0x67</span><br></pre></td></tr></table></figure></p></blockquote><p>Buffer与字符串能够相互转化，例如可以使用指定编码将二进制数据转化为字符串：<br>var str = bin.toString(‘utf-8’);<br>或者反过来，将字符串转换为指定编码下的二进制数据<br>var bin  = new Buffer(‘hello’,’utf-8’)<br>Buffer与字符串一个重要区别。字符串是只读的，并且字符串的任何修改得到都是一个新字符串，原字符串保持不变，至于Buffer，更像是可以做指针操作的C 语言数组。<br>.slice方法也不是返回一个新的BUffer，而更像是返回了指向原Buffer中间的摸个位置的指针，</p><blockquote><p>也因此，如果想要拷贝一份Buffer,得首先创建一个新的Buffer，并通过.copy方法把原Buffer只能中的数据复制过去。这个类似于申请一块新的内存，并把已有内存中的数据复制过去。<br>总之，Buffer将JS的数据处理能力从字符串扩展到了任意二进制数据。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;Buffer-数据块&quot;&gt;&lt;a href=&quot;#Buffer-数据块&quot; class=&quot;headerlink&quot; title=&quot;Buffer(数据块)&quot;&gt;&lt;/a&gt;Buffer(数据块)&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;JS语言自身只有字符串数据类型，没有二进制数据
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>文件操作</title>
