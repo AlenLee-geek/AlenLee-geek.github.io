@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-15T14:42:37.598Z</updated>
+  <updated>2018-04-15T14:53:19.078Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>node-Stream</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/15/node-Stream/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/15/node-Stream/</id>
+    <published>2018-04-15T14:43:15.000Z</published>
+    <updated>2018-04-15T14:53:19.078Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="数据流（Stream）"><a href="#数据流（Stream）" class="headerlink" title="数据流（Stream）"></a>数据流（Stream）</h4><blockquote><p>当内存中无法一次装下需要处理的数据是，或者一边读取一边处理更加高效时，我们就需要用到数据流。NodeJS中通过各种Stream来提供对数据流的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var rs = fs.createReadStream(pathname);</span><br><span class="line">rs.on(&apos;data&apos;,function(chunk)&#123;</span><br><span class="line">  doSomething(chunk);</span><br><span class="line">&#125;);</span><br><span class="line">rs.on(&apos;end&apos;,function()&#123;</span><br><span class="line">    cleanup();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var rs = fs.creatReadStream(src);</span><br><span class="line">rs.on(&apos;data&apos;,function(chunck)&#123;</span><br><span class="line">  rs.pause();</span><br><span class="line">  dosomething(chunck,function()&#123;</span><br><span class="line">    rs.resume();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">rs.on(&apos;end&apos;,function()&#123;</span><br><span class="line">  cleanup();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;数据流（Stream）&quot;&gt;&lt;a href=&quot;#数据流（Stream）&quot; class=&quot;headerlink&quot; title=&quot;数据流（Stream）&quot;&gt;&lt;/a&gt;数据流（Stream）&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;当内存中无法一次装下需要处理的数据是，或者
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>node-buffer</title>
