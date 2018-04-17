@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-15T14:53:19.078Z</updated>
+  <updated>2018-04-17T02:26:56.444Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>File System(文件系统)</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/16/File-System-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/16/File-System-文件系统/</id>
+    <published>2018-04-16T03:24:04.000Z</published>
+    <updated>2018-04-17T02:26:56.444Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>NodeJS通过fs内置模块提供对文件的操作。fs模块提供的API基本上可以风味一下三类<br>. 文件属性读写<br>  其中常用的有fs.stat、fs.chmod、fs.chown等等。<br>. 文件内容读写<br>  其中常用的有fs.readFile、fs.readdir、fs.writeFile。fs.mkdir等等。<br>. 底层文件操作。<br>  其中常用的有fs.open、fs.read、fs.write、fs.close等等。</p></blockquote><p>NodeJS最为精华的异步IO模型在fs模块里有充分的体现。例如上边提到的这些API都通过回调函数传递结果。以fs.readFile为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(pathname,function(err,data)&#123;</span><br><span class="line">  if(err)&#123;</span><br><span class="line"></span><br><span class="line">  &#125;else&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;NodeJS通过fs内置模块提供对文件的操作。fs模块提供的API基本上可以风味一下三类&lt;br&gt;. 文件属性读写&lt;br&gt;  其中常用的有fs.stat、fs.chmod、fs.chown等等。&lt;br&gt;. 文件内容读写&lt;br&gt;  其中常用的有fs.r
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>node-Stream</title>
