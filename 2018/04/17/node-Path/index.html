@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>Array | AlenLee&#39;s blogs</title>
+<title>node-Path | AlenLee&#39;s blogs</title>
 
 
     <link rel="alternate" href="/atom.xml" title="AlenLee&#39;s blogs" type="application/atom+xml">
@@ -130,9 +130,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Array">
+        <h1 id="node-Path">
             
-	            Array
+	            node-Path
             
         </h1>
         <div class="post-meta">
@@ -160,7 +160,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/04/11</span>
+            <span class="date-meta">2018/04/17</span>
         </span>
     
 </div>
@@ -171,21 +171,18 @@
     
     <div class="post-body post-content">
         <blockquote>
-<h4 id="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"><a href="#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同" class="headerlink" title="在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同"></a>在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var objects = [1,&apos;alen&apos;,true,null];</span><br></pre></td></tr></table></figure>
+<p>操作文件时难免不与文件路径打交道，NodeJs提供了path内置模块来简化路径相关操作，并提升代码可读性。<br>1.path.normalize<br>将传入的路径转换为标准路径，具体讲的话。除了解析路径中的.与..外，还能去掉多余的斜杠。如果还有程序需要使用路径作为某些数据的索引，但又允许用户随意输入路径时，就需要使用该方法保证路径的我唯一性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var cache = &#123;&#125;;</span><br><span class="line">function store(key,value)&#123;</span><br><span class="line">  cache[path.normallize(key)] = value;</span><br><span class="line">&#125;</span><br><span class="line">store(&apos;foo/bar&apos;,1);</span><br><span class="line">store(&apos;foo/baz//../bar&apos;,2);</span><br><span class="line">console.log(cache);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<h4 id="当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，"><a href="#当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，" class="headerlink" title="当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，"></a>当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用，当你通过原引用修改了数组的值，</h4><h4 id="另外一个引用也会感知到这个变化，"><a href="#另外一个引用也会感知到这个变化，" class="headerlink" title="另外一个引用也会感知到这个变化，"></a>另外一个引用也会感知到这个变化，</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var nums = [];</span><br><span class="line">for(var i = 0;i &lt; 10;i++)&#123;</span><br><span class="line">  nums[i] =i+1;</span><br><span class="line">&#125;</span><br><span class="line">var samenums = nums;</span><br></pre></td></tr></table></figure>
+<p>path.join<br>将传入的多个路径拼接为标准路径。该方法可以避免手工拼路径字符串的繁琐，并且能在不同系统下使用相应的路径的路径分隔符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.join(&apos;foo/&apos;,&apos;baz/&apos;,&apos;../bar&apos;);//=&gt;foo/bar</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<h4 id="这种行为被称为浅复制，新数组依然指向原来的数组。"><a href="#这种行为被称为浅复制，新数组依然指向原来的数组。" class="headerlink" title="这种行为被称为浅复制，新数组依然指向原来的数组。"></a>这种行为被称为浅复制，新数组依然指向原来的数组。</h4><h4 id="使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。"><a href="#使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。" class="headerlink" title="使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。"></a>使用深复制，将原来数组的每一个元素都复制一份到新数组中，可以写一个深复制函数来做这件事。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function copy(arr1,arr2)&#123;</span><br><span class="line">  for(var i = 0; i &lt; arr1.length; ++i)&#123;</span><br><span class="line">    arr2[i] = arr1[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>path.extname<br>当我们需要根据不同文件扩展名做不同操作时，该方法就显得很好用。以下是一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.extname(&apos;foo/bar.js&apos;);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<blockquote>
-<h4 id="查找元素indexof"><a href="#查找元素indexof" class="headerlink" title="查找元素indexof(),"></a>查找元素indexof(),</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var names = [&apos;alen&apos;,&apos;jhon&apos;,&apos;Clayton&apos;];</span><br><span class="line">putstr(&apos;Enter a name to search for: &apos;);</span><br><span class="line">var name = readline();</span><br><span class="line">var position = name.indexof(name);</span><br><span class="line">if( position &gt;= 0)&#123;</span><br><span class="line">  print(&apos;Found&apos; + name + &apos; at position &apos;+ position);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  print(name + &apos;not found in array.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<h4 id="迭代器方法"><a href="#迭代器方法" class="headerlink" title="迭代器方法"></a>迭代器方法</h4><p>最后一组方法是迭代器方法，这些方法对数组中的每个元素一个函数，可以返回一个值，一组值或者一个新数组<br>不生成新数组的迭代器方法<br>forEach(),该方法接受一个函数作为参数，对数组中的每个元素使用该函数、<br>every(),该方法接受一个返回值为布尔类型的函数，对数组中的每一个袁术使用该函数，如果对于所有的元素，该该函数均返回true.<br>some(),方法接受一个返回值为布尔类型的函数，只要有一个元素使得该函数返回true<br>reduce()方法接受一个函数，返回一个值，该方法会从一个累加值开始，不断对累加值和数组中的后续</p>
-<h4 id="生成新数组的迭代器方法"><a href="#生成新数组的迭代器方法" class="headerlink" title="生成新数组的迭代器方法"></a>生成新数组的迭代器方法</h4><p>有两个迭代器方法可以生成新数组；map()和filter()</p>
-</blockquote>
+<h4 id="遍历目录"><a href="#遍历目录" class="headerlink" title="遍历目录"></a>遍历目录</h4><p>遍历目录是操作文件时的一个常见需求。比如写一个程序，需要找到并处理指定目录下的所有JS文件时，就需要遍历整个目录。<br>递归算法<br>  遍历目录时一般使用递归算法，否则就难以编写出简洁的代码，递归算法与数学归纳法类似，通过不断缩小问题的规模来解决问题。以下示例说明了这种方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function factorial(n)&#123;</span><br><span class="line">  if( n === 1)&#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;else &#123;</span><br><span class="line">    return n * factorial( n - 1 );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>遍历算法<br>目录是一个树状结构，在遍历时一般使用深度优先+先序遍历算法。深度优先，意味着到达一个节点后，首先接着遍历子节点而不是邻居节点。先序遍历，意味着首次到达了某节点就算遍历完成，而不是最后一次返回某节点才算数。因此使用这种遍历方式是，下边这棵树的遍历顺序是A&gt;B&gt;D&gt;E&gt;C&gt;F<br>同步遍历<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function travel(dir,callback)&#123;</span><br><span class="line">  fs.readdirSync(dir).forEach(function(file)&#123;</span><br><span class="line">    var pathname = path.join(dir,file);</span><br><span class="line">    if( fs.statSync(pathname).isDirectory())&#123;</span><br><span class="line">      travel(pathname,callback);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      callback(pathname);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>异步遍历<br>如果读取目录或读取文件使用的是异步API，目录遍历函数实现起来会有些复杂，但原理完全相同，travel函数的异步版本如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function travel(dir,callback,finish)&#123;</span><br><span class="line">  fs.readdir(dir,function(err,files)&#123;</span><br><span class="line">    (function next(i)&#123;</span><br><span class="line">      if(i &lt; file.length )&#123;</span><br><span class="line">          var pathname = path.join(dir,files[i]);</span><br><span class="line">          fs.stat(pathname,function(err,stats)&#123;</span><br><span class="line">            if(stats.isDeirectory())&#123;</span><br><span class="line">              travel(pathname,callback,function()&#123;</span><br><span class="line">                next(i + 1);</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">               callback(pathname,function()&#123;&#125;)</span><br><span class="line">             &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>文本编码</p>
 
     </div>
 
@@ -203,15 +200,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/04/11/List/" class="pre-post btn btn-default" title='List'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">List</span>
-        </a>
     
-    
-        <a href="/2018/04/10/立即执行函数/" class="next-post btn btn-default" title='立即执行函数'>
+        <a href="/2018/04/16/File-System-文件系统/" class="next-post btn btn-default" title='File System(文件系统)'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">立即执行函数</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">File System(文件系统)</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
