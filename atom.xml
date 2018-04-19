@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-18T06:40:47.475Z</updated>
+  <updated>2018-04-19T02:47:21.785Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>node-网络操作</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/18/node-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/18/node-网络操作/</id>
+    <published>2018-04-18T08:01:46.000Z</published>
+    <updated>2018-04-19T02:47:21.785Z</updated>
+    
+    <content type="html"><![CDATA[<p>NodeJS本来的用途是编写高性能Web服务器，使用NodeJS内置的http模块 简单实现一个HTTP服务器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">http.createServer(function(request,response)&#123;</span><br><span class="line">    response.writeHead(200,&#123;&apos;Content-Type&apos;:&apos;text-plain&apos;&#125;);</span><br><span class="line">    response.end(&apos;Hello world&apos;);</span><br><span class="line">&#125;).listen(3000);</span><br></pre></td></tr></table></figure></p><p>‘http’模块提供两种使用方式：<br>1.作为服务端使用时，创建一个HTTP服务器，监听HTTP客户端请求并返回响应。<br>2.作为客户端使用时，发起一个HTTP客户端请求，获取服务端响应。<br>首先我们看看服务端模式下我们如何工作。如开门红中的例子所示，首先需要使用.createServer方法创建一个服务器，然后调用.listen方法监听端口。之后，每当来了一个客户端请求，创建服务器时传入的回调函数就被调用一次。<br>HTTP请求本质上是一个数据流。由请求头（headers）和请求体（body)组成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">User-Agent: curl/7.26.0</span><br><span class="line">Host: localhost</span><br><span class="line">Accept: */*</span><br><span class="line">Content-Length: 11</span><br><span class="line">Content-Type: application/x-www-form-urlencodeed</span><br><span class="line"></span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure></p><p>可以看到，空行之上是请求头，之下是请求体。HTTP请求在发送给服务器时，可以认为是按照从头到尾的顺序一个字节一个字节地以数据流方式发送的。而http模块创建的HTTP服务器在接收到完整的请求头后，就会调用回调函数，在回调函数中，除了可以使用request对象访问请求头部数据外，还能把request对象当作一个只读数据流来访问请求体数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&apos;http&apos;);</span><br><span class="line">http.createServer(function(request,response)&#123;</span><br><span class="line">    var body = [];</span><br><span class="line">    console.log(request.method);</span><br><span class="line">    console.log(request.headers);</span><br><span class="line">    request.on(&apos;data&apos;,function(chunk)&#123;</span><br><span class="line">        body.push(chunk);</span><br><span class="line">    &#125;);</span><br><span class="line">    request.on(&apos;end&apos;,function()&#123;</span><br><span class="line">        body = Buffer.concat(body);</span><br><span class="line">        console.log(body.toString());</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p><p>处理HTTP请求时url模块使用率超高，因为该模块允许解析URL、生成URL、以及拼接URL。首先我们来看看一个完整的URL的各组成部分。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;NodeJS本来的用途是编写高性能Web服务器，使用NodeJS内置的http模块 简单实现一个HTTP服务器。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span clas
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>node-Path</title>
