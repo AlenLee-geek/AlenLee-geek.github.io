@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>node | AlenLee&#39;s blogs</title>
+<title>JS模块化 | AlenLee&#39;s blogs</title>
 
 
     <link rel="alternate" href="/atom.xml" title="AlenLee&#39;s blogs" type="application/atom+xml">
@@ -130,9 +130,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="node">
+        <h1 id="JS模块化">
             
-	            node
+	            JS模块化
             
         </h1>
         <div class="post-meta">
@@ -160,7 +160,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/04/14</span>
+            <span class="date-meta">2018/05/08</span>
         </span>
     
 </div>
@@ -170,37 +170,12 @@
     </div>
     
     <div class="post-body post-content">
-        <h5 id="NodeJS基础"><a href="#NodeJS基础" class="headerlink" title="NodeJS基础"></a>NodeJS基础</h5><blockquote>
-<p>JS是脚本语言，脚本语言都是需要一个额解析器才能运行。对于写在HTML页面里面的JS，浏览器充当了解析器的角色、而对于需要独立运行的JS，NodeJS就是一个解析器。<br>每一种解析器都是一个运行环境，不但允许JS定义各种数据结构们进行各种计算，还允许JS使用运行环境提供的内置队形和方法做一些事情。例如运行在浏览器中的JS的用途是是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。</p>
-</blockquote>
-<h5 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h5><blockquote>
-<p>尽管存在，听说可以直接运行JS文件，但多数同学在接触新东西时，首先关心的是有啥用处，以及能带来什么价值。<br>NodeJS的作者说，他创造NodeJS的目的是为了实现高性能Web服务器。他首先看重的是事件机制和异步IO模型的优越性，而不是JS。但是他需要选择一种编程语言实现他的想法，这种编程语言不能自带IO功能，并且需要能良好支持事件机制，JS没有自带IO功能，天生就用于处理浏览器中的DOM事件，并且拥有一群程序员，因此就称为了天然的选择。<br>NodeJS在服务端活跃起来，出现了大批基于NodeJS的Web服务。而另一方面，NodeJS让前端众如获神器，终于可以让自己的能力覆盖范围跳出浏览器窗口，更大批的前端工具如雨后春笋。<br>因此，对于前端而言，虽然不是人人都要拿NodeJS写一个服务器程序，但简单可至使用 命令交互模式调试JS代码片段，复杂可至编写工具提升工作效率。<br>编写稍大一点的程序时一般都会讲代码模块化。在NodeJS中，一般将代码合理拆分到不同的JS文件中，每一个文件及时一个模块，而<strong>文件路径就是模块名</strong>。<br>在编写每一个模块时，都有require、exports、module三个预先定义好的变量可以使用。</p>
-</blockquote>
-<h5 id="require"><a href="#require" class="headerlink" title="require"></a>require</h5><blockquote>
-<p>require 函数用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者绝对路径（/或者C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略，</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var foo1 = require(&apos;./foo&apos;);</span><br><span class="line">var foo2 = require(&apos;./foo.js&apos;);</span><br><span class="line">var foo3 = require(&apos;./home/user/foo&apos;);</span><br><span class="line">var foo4 = require(&apos;./home/user/foo.js&apos;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>另外，可以使用以下方式加载和使用一个JSON文件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var data = require(&apos;./data.json&apos;);</span><br></pre></td></tr></table></figure>
-<h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><blockquote>
-<p>exports对象是当前模块导出对象，用于导出导出模块公有方法和属性，别的模块通过require函数使用当前模块时得到的就是模块exports对象，以下例子中导出的一个公有方法。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.hello = function()&#123;</span><br><span class="line">  console.log(&apos;Hello World&apos;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><blockquote>
-<p>通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通 对象。如果想改为一个函数的话，可以使用以下方式。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function()&#123;</span><br><span class="line">  console.log(&apos;hello world&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码中，模块默认导出对象被替换为一个函数。</p>
-<h4 id="模块初始化"><a href="#模块初始化" class="headerlink" title="模块初始化"></a>模块初始化</h4><blockquote>
-<p>一个模块中的JS代码仅在模块第一次被使用时执行一次，并在执行过程中初始化模块的导出导出对象。之后，缓存起来的导出对象呗重复利用。<br>主模块<br>通过命令行参数传入给NodeJS已启动程序的模块被称为主模块。主模块负责调度组成整个程序的其他模块完成工作，例如通过以下命令启动程序时，main.js就是主程序。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var i = 0;</span><br><span class="line">function count()&#123;</span><br><span class="line">  return ++i;</span><br><span class="line">&#125;</span><br><span class="line">exports.count = count;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var counter1 = require(&apos;./util/counter&apos;);</span><br><span class="line">var counter2 = require(&apos;./util/counter&apos;);</span><br><span class="line">console.log(counter1.count());</span><br><span class="line">console.log(counter2.count());</span><br><span class="line">console.log(counter2.count());</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>可以看到，counter.js并没有因为被require了两次而初始化两次。</p>
-</blockquote>
+        <p>随着web page进化到web application,浏览器端的处理的逻辑越来越复杂，展现的样式和动画越来越多，对于工程的要求也就越来越高。于是模块化的需求也就产生了。模块化的意义：<br>   组件的复用，降低开发成本和维护成本<br>   组件单独开发，方便分工合作<br>   模块化遵循标准，方便自动化依赖管理，代码优化，部署。<br>AMD和CMD分别是requireJS和seaJS定义的标准，使用纯原生的ES5语法意味着只能使用闭包，书写和阅读都很怪异。值得一提的是AngularJS也使用类似的方式，以至于Angular的作者们都受不了，决定在AngularJS2使用新的语言AtScript，AMD长得啥样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define([&apos;./a&apos;,&apos;./b&apos;],function(a，b)&#123;</span><br><span class="line">  ...</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>CommonJS是Node.js使用的模块化标准。Node.js对于前端开发者来说不仅仅可以提供一个Server,还是一个完美的开发平台，在Node上使用Grunt/gulp构建web项目是件很爽的事情。Node的模块化声明的方式与Closure类似，只是更进一步，天然隔离了命名空间，上面的代码如果使用CommoneJS的模块化规范可以这么写：<br>  module.exports = {…}<br>  var a = require(‘./foo/bar’)<br>  browserify让使用CommonJS模块规范的代码可以运行在客户端上。<br>2.静态加载与动态加载<br>  在看ES6之前我们先看模块加载的两中方式：<br>  静态加载：在编译阶段进行，把所有需要的依赖打包到一个文件中<br>  动态加载：在运行时加载依赖</p>
+<p>AMD标准是动态加载的代表，而CommonJS是静态加载的代表。AMD的目的是用在浏览器上，所以是异步加载的。而NodeJS是运行在服务器上的，同步加载的方式显然更容易被人接收，所以使用了CommonJS。同样的道理，如果静态加载，那就使用同步的方式，如果动态加载就必须用异步的加载方式。<br>那么ES6采用何种加载机制？<br>  ES6寄希望用简单的声明方式来完成静态加载，又不愿放弃冬天加载的特性，而这两种方式几乎不可能建档的同时现<br>  ，所以ES6提供了两种独立的模块加载方法。<br>2.1 声明的方式<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;foo&#125; from modulel</span><br></pre></td></tr></table></figure></p>
+<p>2.2 通过System.import API的方式<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.import(&apos;some_module&apos;).then(some_module =&gt;&#123;</span><br><span class="line">  // Use some_module</span><br><span class="line">  &#125;).catch(error =&gt;&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>export的语法，与CommonJS很像，只不过没有了module这个对象，而是直接到调用export。可以exportr如何一个函数、变量、对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export function abc()&#123;&#125;//export 一个命名的function</span><br><span class="line">export default function()&#123;&#125; //export default function</span><br><span class="line">export num = 123 //export 一个数值</span><br><span class="line">export obj = &#123;&#125;</span><br><span class="line">export &#123; obj as default &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import expt from &apos;expt&apos;//default export</span><br><span class="line">import &#123; default as myModule &#125; from &apos;expt&apos; // rename</span><br><span class="line">import &#123; abc,num,obj &#125; from &apos;expt&apos;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -218,15 +193,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/04/15/二进制模块/" class="pre-post btn btn-default" title='二进制模块'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">二进制模块</span>
-        </a>
     
-    
-        <a href="/2018/04/11/List/" class="next-post btn btn-default" title='List'>
+        <a href="/2018/05/07/Javascript-Async-Await-Expalained-in-10-Minutes/" class="next-post btn btn-default" title='Javascript Async/Await Expalained in 10 Minutes'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">List</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Javascript Async/Await Expalained in 10 Minutes</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-04-23T07:15:01.462Z</updated>
+  <updated>2018-05-08T07:12:42.946Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -15,6 +15,132 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS模块化</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/05/08/JS%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/05/08/JS模块化/</id>
+    <published>2018-05-08T06:03:59.000Z</published>
+    <updated>2018-05-08T07:12:42.946Z</updated>
+    
+    <content type="html"><![CDATA[<p>随着web page进化到web application,浏览器端的处理的逻辑越来越复杂，展现的样式和动画越来越多，对于工程的要求也就越来越高。于是模块化的需求也就产生了。模块化的意义：<br>   组件的复用，降低开发成本和维护成本<br>   组件单独开发，方便分工合作<br>   模块化遵循标准，方便自动化依赖管理，代码优化，部署。<br>AMD和CMD分别是requireJS和seaJS定义的标准，使用纯原生的ES5语法意味着只能使用闭包，书写和阅读都很怪异。值得一提的是AngularJS也使用类似的方式，以至于Angular的作者们都受不了，决定在AngularJS2使用新的语言AtScript，AMD长得啥样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define([&apos;./a&apos;,&apos;./b&apos;],function(a，b)&#123;</span><br><span class="line">  ...</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p><p>CommonJS是Node.js使用的模块化标准。Node.js对于前端开发者来说不仅仅可以提供一个Server,还是一个完美的开发平台，在Node上使用Grunt/gulp构建web项目是件很爽的事情。Node的模块化声明的方式与Closure类似，只是更进一步，天然隔离了命名空间，上面的代码如果使用CommoneJS的模块化规范可以这么写：<br>  module.exports = {…}<br>  var a = require(‘./foo/bar’)<br>  browserify让使用CommonJS模块规范的代码可以运行在客户端上。<br>2.静态加载与动态加载<br>  在看ES6之前我们先看模块加载的两中方式：<br>  静态加载：在编译阶段进行，把所有需要的依赖打包到一个文件中<br>  动态加载：在运行时加载依赖</p><p>AMD标准是动态加载的代表，而CommonJS是静态加载的代表。AMD的目的是用在浏览器上，所以是异步加载的。而NodeJS是运行在服务器上的，同步加载的方式显然更容易被人接收，所以使用了CommonJS。同样的道理，如果静态加载，那就使用同步的方式，如果动态加载就必须用异步的加载方式。<br>那么ES6采用何种加载机制？<br>  ES6寄希望用简单的声明方式来完成静态加载，又不愿放弃冬天加载的特性，而这两种方式几乎不可能建档的同时现<br>  ，所以ES6提供了两种独立的模块加载方法。<br>2.1 声明的方式<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;foo&#125; from modulel</span><br></pre></td></tr></table></figure></p><p>2.2 通过System.import API的方式<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.import(&apos;some_module&apos;).then(some_module =&gt;&#123;</span><br><span class="line">  // Use some_module</span><br><span class="line">  &#125;).catch(error =&gt;&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p><p>export的语法，与CommonJS很像，只不过没有了module这个对象，而是直接到调用export。可以exportr如何一个函数、变量、对象</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export function abc()&#123;&#125;//export 一个命名的function</span><br><span class="line">export default function()&#123;&#125; //export default function</span><br><span class="line">export num = 123 //export 一个数值</span><br><span class="line">export obj = &#123;&#125;</span><br><span class="line">export &#123; obj as default &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import expt from &apos;expt&apos;//default export</span><br><span class="line">import &#123; default as myModule &#125; from &apos;expt&apos; // rename</span><br><span class="line">import &#123; abc,num,obj &#125; from &apos;expt&apos;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;随着web page进化到web application,浏览器端的处理的逻辑越来越复杂，展现的样式和动画越来越多，对于工程的要求也就越来越高。于是模块化的需求也就产生了。模块化的意义：&lt;br&gt;   组件的复用，降低开发成本和维护成本&lt;br&gt;   组件单独开发，方便分工合作
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Javascript Async/Await Expalained in 10 Minutes</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/05/07/Javascript-Async-Await-Expalained-in-10-Minutes/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/05/07/Javascript-Async-Await-Expalained-in-10-Minutes/</id>
+    <published>2018-05-07T02:04:15.000Z</published>
+    <updated>2018-05-07T02:04:15.478Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>http&amp;https</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/05/04/http-https/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/05/04/http-https/</id>
+    <published>2018-05-04T05:50:36.000Z</published>
+    <updated>2018-05-07T02:04:46.521Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>跟大流的小程序</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/05/02/%E8%B7%9F%E5%A4%A7%E6%B5%81%E7%9A%84%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/05/02/跟大流的小程序/</id>
+    <published>2018-05-02T07:48:00.000Z</published>
+    <updated>2018-05-02T07:48:00.658Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Web Session</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/28/Web-Session/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/28/Web-Session/</id>
+    <published>2018-04-28T03:00:11.000Z</published>
+    <updated>2018-05-07T02:04:44.971Z</updated>
+    
+    <content type="html"><![CDATA[<p>回话的概念<br>用户在网站的一组相互关联的请求和响应，就是一次回话。简而言之：<br>1、回话 = 一组访问<br>2、访问 = -次请求和响应<br>例如一个简单的nodejs HTTP程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&apos;http&apos;)</span><br><span class="line">http.createServer(function(req,res)&#123;</span><br><span class="line">  res.end(&apos;hello&apos;);</span><br><span class="line">&#125;).listen(3000)</span><br></pre></td></tr></table></figure></p><p>每个请求都会进入到此处理函数：function(req,res){res.end(‘hello’)},在此函数内获得请求，处理响应，完成后发给客户端，就是一次访问。通过浏览器的developer tools,可以看到此次回话的请求内容和响应内容。</p><p>引入回话<br>我们从一个案例开始引入回话的概念，当我们需要访问站点计数一类的功能时，我们希望用户访问此站点时：<br>1、第一次访问时，显示你的访问次数为1<br>2、此后每次访问时，访问计数加1</p><p>此种情况下，我们需要有一个地方存储当前计数，这样才能在同一个客户在此访问时，可以取出当前计数，加一后返回给客户。当然也因此需要识别此用户(浏览器)。为每个用户单独计数，就是说，不同的用户访问时，需要去取对应用户的当前计数。<br>识别客户的问题，常用的方法就是使用cookie,cookie是HTTP协议的一部分。HTTP可以通过字段Set-cookie为来访问客户做一个标记，这个标记常常就是一个ID，下一次访问此站点时，HTTP会通过cookie头字段，发送此ID到站点，由此站点知道此客户的身份和这个身份关联的状态信息，比如当前访问计数，或者此身份当前的购物车的内容等等。<br>识别了客户后，就可以在web服务器内，为此客户端建立它的独特的转态信息。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;回话的概念&lt;br&gt;用户在网站的一组相互关联的请求和响应，就是一次回话。简而言之：&lt;br&gt;1、回话 = 一组访问&lt;br&gt;2、访问 = -次请求和响应&lt;br&gt;例如一个简单的nodejs HTTP程序&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tab
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>IOCP模型与EPOLL模型的比较</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/24/IOCP%E6%A8%A1%E5%9E%8B%E4%B8%8EEPOLL%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/24/IOCP模型与EPOLL模型的比较/</id>
+    <published>2018-04-24T07:46:06.000Z</published>
+    <updated>2018-05-07T02:04:43.197Z</updated>
+    
+    <content type="html"><![CDATA[<p>一、IOCP和Epoll之间的异同。<br>不同：<br>1、IOCP是WINDOWS系统下使用。Epoll是linux系统下使用。<br>2、IOCP是IO操作完毕之后，通过Get函数获得一个完成的事件通知。<br>Epoll是当你希望进行一个IO操作时，向Epoll查询是否可读或者可写，若处于可读或者可写转态后，Epoll会通过epoll_wait进行通知。<br>3、IOCP封装了异步的消息的通知机制，同时封装了部分IO操作。但Epoll仅仅封装了一个异步事件的通知机制，并不负责IO读写操作，Epoll保持了事件通知和IO操作间的独立性，更加简单灵活。<br>4、基于上面的描述，我们可以知道Epoll不负责IO操作，所以它只告诉你当前可读可写了，并且将协议读写缓冲填充，由用户去读写操作，此时我们可以做出额外的许多操作。IOCP则直接将IO通道里的读写操作都做完了才通知用户，当IO通道里发生了堵塞等情况我们是无法控制的。<br>相同：<br> 1、它们都是一部的时间驱动的网络模型。<br> 2、它们都可以向底层进行了指针数据传递，当返回事件时，除可通知事件类型外，还可以通知时间相关数据。<br>二、描述一下IOCP：<br>   传统服务器的网络IO流程如下：<br>   接到一个客户端连接-&gt;创建一个线程负责这个连接的IO操作-&gt;持续对新线程进行数据处理-&gt;全部数据处理完毕-&gt;终止线程。<br>   将存在的问题：<br>   1、每个链接创建一个线程，将导致过多的线程。<br>   2、维护线程所消耗的堆栈内存过大。<br>   3、操作系统创建和销毁线程过大。<br>   4、线程之间切换的上下文代价过大。<br>   此时我们可以考虑使用线程池解决其中3和4的问题。这种传统的服务器网络结构称之为回话模型。后来我们为了防止大量线程的维护，创建了I/O模型，它被希望要求可以：<br>   1、客户端状态的分离，之前会话模式我么可以通过线程状态得知客户端状态。<br>   2、允许一个客户端在不同时间被多个线程服务。<br>   这样做的话，我们的线程则会大幅度减少，这就要求以下两点：<br>   1、客户端状态的分离，之前回话模式我们可以通过线程状态得知客户端状态，但现在客户端状态要通过其他方式获取。<br>   2、I/O请求的分离，一个线程不再服务于一个客户端回话，则要求客户端对这个线程提交I/O处理请求。<br>   那么就产生了这样的一个模式，分为两部分：<br>   1：会话状态管理模块。它负责接收到一个客户端连接，就创建一个回话状态。<br>   2：当回话状态发生改变，例如断掉连接，接收到网络消息，就发送一个I/O请求给I/O工作模块进行处理。<br>   3：I/O工作模块接收到一个I/O请求后，从线程池里唤醒一个工作线程，让该工作线程处理这个I/O请求，处理完毕后，该工作线程继续挂起。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一、IOCP和Epoll之间的异同。&lt;br&gt;不同：&lt;br&gt;1、IOCP是WINDOWS系统下使用。Epoll是linux系统下使用。&lt;br&gt;2、IOCP是IO操作完毕之后，通过Get函数获得一个完成的事件通知。&lt;br&gt;Epoll是当你希望进行一个IO操作时，向Epoll查询
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>webpack</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/04/23/webpack/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/04/23/webpack/</id>
+    <published>2018-04-23T08:13:08.000Z</published>
+    <updated>2018-05-07T02:04:40.883Z</updated>
+    
+    <content type="html"><![CDATA[<p>入口（entry):<br>  入口起点指示webpack应该使用哪个模块，来作为构建内部依赖图，进入入口起点后，webpack会找出有哪些模块，来作为构建其内部依赖图的开始。进入入口起点后，webpack会找出有哪些模块和库是入口起点(直接和间接)依赖的。每个依赖项随机被处理，最后输出到称之为bundles的文件中，我们将在下一章详细讨论这个过程。<br>  可以通过在webpack配置中配置entry属性，来指定一个入口起点（或多个入口起点）。<br>出口（output)<br>output属性告诉webpack在哪里输出它所创建的bundles,以及如何命名这些文件，默认值为./dist。基本上，整个应用程序结构，都会被编译到你指定的输出路径的文件夹中。<br>loader<br>  loader让webpack能够处理那些处理非javascript文件(webpack自身只理解javaScript)。loader可以将所有类型的文件转换为webpack能够处理的有效模块。然后你就可以利用webpack的打包能力，对他们进行处理。<br>本质上，webpack loader将所有类型的文件，转换为应用程序的依赖图（和最终的bundle)可以直接引用的模块。<br>注意：loader能够import导入任何类型的模块(例如.css文件)，这是webpack特有的功能，其他打包程序或任务执行器的可能并不支持。我们认为这种语言扩展是很有必要的。因为这可以使开发人员穿件出更准确的依赖关系图。<br>在更高层面，在webpack的配置中loader有两个目标：<br>1、test属性，用于标识出应该被对应的loader进行转换的某个或某些文件。</p><p>INSERT INTO dev_caili<code>.</code>ims_modules_bindings<code>(</code>eid<code>,</code>module<code>,</code>entry<code>,</code>call<code>,</code>title<code>,</code>do<code>,</code>state<code>,</code>direct<code>,</code>url<code>,</code>icon<code>,</code>displayorder`) VALUES (NULL, ‘we7_wmall’, ‘menu’, ‘’, ‘会员制’, ‘ptfclub-card’, ‘’, ‘0’, ‘’, ‘’, ‘100’);</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;入口（entry):&lt;br&gt;  入口起点指示webpack应该使用哪个模块，来作为构建内部依赖图，进入入口起点后，webpack会找出有哪些模块，来作为构建其内部依赖图的开始。进入入口起点后，webpack会找出有哪些模块和库是入口起点(直接和间接)依赖的。每个依赖项随机被
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>node-demo</title>
@@ -292,49 +418,6 @@
       
         &lt;blockquote&gt;
 &lt;h4 id=&quot;在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同&quot;&gt;&lt;a href=&quot;#在脚本语言里很常见的一个特性是，数组中的元素不必是通哟中数据类型，这一点和衡多编程语言不同&quot; class=&quot;headerli
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>立即执行函数</title>
-    <link href="https://AlenLee-geek.github.io.git/2018/04/10/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0/"/>
-    <id>https://AlenLee-geek.github.io.git/2018/04/10/立即执行函数/</id>
-    <published>2018-04-10T06:55:15.795Z</published>
-    <updated>2018-04-10T08:57:49.678Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="javascript-立即执行函数"><a href="#javascript-立即执行函数" class="headerlink" title="javascript 立即执行函数"></a>javascript 立即执行函数</h3><blockquote><p>为了处于隔离的作用域，任何一个第三方库都存在大量的变量和函数，为避免变量污染（命名冲突），使用立即执行函数。<br>1.什么是立即执行函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  function test()&#123;//函数声明</span><br><span class="line">    console.log(&apos;test&apos;);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   var test = function()&#123;//函数表达式</span><br><span class="line">    console.log(&apos;test&apos;);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> function()&#123;</span><br><span class="line">  console.log(&apos;test&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p></blockquote><h3 id="要想立即执行函数做到立即执行，"><a href="#要想立即执行函数做到立即执行，" class="headerlink" title="要想立即执行函数做到立即执行，"></a>要想立即执行函数做到立即执行，</h3><p>1.一是函数体后面要小括号。<br>2.二函数体必须是函数表达式而不能函数声明。<br>3.除了()运算符之外，！，+，-，=等运算符都能够立即执行的作用。这些运算符的作用就是将函数或函数声明转换为函数表达式。</p><h3 id="使用立即执行函数的好处"><a href="#使用立即执行函数的好处" class="headerlink" title="使用立即执行函数的好处"></a>使用立即执行函数的好处</h3><p>1.防止变量名称冲突。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;javascript-立即执行函数&quot;&gt;&lt;a href=&quot;#javascript-立即执行函数&quot; class=&quot;headerlink&quot; title=&quot;javascript 立即执行函数&quot;&gt;&lt;/a&gt;javascript 立即执行函数&lt;/h3&gt;&lt;blockquote&gt;
-
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://AlenLee-geek.github.io.git/2018/03/31/hello-world/"/>
-    <id>https://AlenLee-geek.github.io.git/2018/03/31/hello-world/</id>
-    <published>2018-03-31T06:16:53.179Z</published>
-    <updated>2018-03-31T06:17:17.483Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
       
     
     </summary>

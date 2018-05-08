@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>node | AlenLee&#39;s blogs</title>
+<title>AlenLee&#39;s blogs</title>
 
 
     <link rel="alternate" href="/atom.xml" title="AlenLee&#39;s blogs" type="application/atom+xml">
@@ -126,16 +126,38 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
+                <main class="col-md-8 main-content ">
+                    <div class="carousel">
+    <img src="/img/head-img.jpg">
+</div>
+
+
+
+
 <article class="post">
-    <div class="post-head">
-        <h1 id="node">
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2018/04/10/立即执行函数/">立即执行函数</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime="" title="">
+                    2018年04月10日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
             
-	            node
+                javascript 立即执行函数
+为了处于隔离的作用域，任何一个第三方库都存在大量的变量和函数，为避免变量污染（命名冲突），使用立即执行函数。1.什么是立即执行函数1234567891011  function test()&amp;#12...
             
-        </h1>
-        <div class="post-meta">
+        </p>
+    </div>
+    
+        <footer class="post-footer clearfix">
+            <div class="pull-left tag-list">
+                <div class="post-meta">
     
     
     <span class="categories-meta fa-wrap">
@@ -157,93 +179,81 @@
     
 
     
-        
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/04/14</span>
-        </span>
-    
 </div>
 
-            
-            
-    </div>
+            </div>
+
+            <div class="post-permalink">
+                <a href="/2018/04/10/立即执行函数/" class="btn btn-default">阅读全文</a>
+            </div>
+        </footer>
     
-    <div class="post-body post-content">
-        <h5 id="NodeJS基础"><a href="#NodeJS基础" class="headerlink" title="NodeJS基础"></a>NodeJS基础</h5><blockquote>
-<p>JS是脚本语言，脚本语言都是需要一个额解析器才能运行。对于写在HTML页面里面的JS，浏览器充当了解析器的角色、而对于需要独立运行的JS，NodeJS就是一个解析器。<br>每一种解析器都是一个运行环境，不但允许JS定义各种数据结构们进行各种计算，还允许JS使用运行环境提供的内置队形和方法做一些事情。例如运行在浏览器中的JS的用途是是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。</p>
-</blockquote>
-<h5 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h5><blockquote>
-<p>尽管存在，听说可以直接运行JS文件，但多数同学在接触新东西时，首先关心的是有啥用处，以及能带来什么价值。<br>NodeJS的作者说，他创造NodeJS的目的是为了实现高性能Web服务器。他首先看重的是事件机制和异步IO模型的优越性，而不是JS。但是他需要选择一种编程语言实现他的想法，这种编程语言不能自带IO功能，并且需要能良好支持事件机制，JS没有自带IO功能，天生就用于处理浏览器中的DOM事件，并且拥有一群程序员，因此就称为了天然的选择。<br>NodeJS在服务端活跃起来，出现了大批基于NodeJS的Web服务。而另一方面，NodeJS让前端众如获神器，终于可以让自己的能力覆盖范围跳出浏览器窗口，更大批的前端工具如雨后春笋。<br>因此，对于前端而言，虽然不是人人都要拿NodeJS写一个服务器程序，但简单可至使用 命令交互模式调试JS代码片段，复杂可至编写工具提升工作效率。<br>编写稍大一点的程序时一般都会讲代码模块化。在NodeJS中，一般将代码合理拆分到不同的JS文件中，每一个文件及时一个模块，而<strong>文件路径就是模块名</strong>。<br>在编写每一个模块时，都有require、exports、module三个预先定义好的变量可以使用。</p>
-</blockquote>
-<h5 id="require"><a href="#require" class="headerlink" title="require"></a>require</h5><blockquote>
-<p>require 函数用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者绝对路径（/或者C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略，</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var foo1 = require(&apos;./foo&apos;);</span><br><span class="line">var foo2 = require(&apos;./foo.js&apos;);</span><br><span class="line">var foo3 = require(&apos;./home/user/foo&apos;);</span><br><span class="line">var foo4 = require(&apos;./home/user/foo.js&apos;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>另外，可以使用以下方式加载和使用一个JSON文件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var data = require(&apos;./data.json&apos;);</span><br></pre></td></tr></table></figure>
-<h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><blockquote>
-<p>exports对象是当前模块导出对象，用于导出导出模块公有方法和属性，别的模块通过require函数使用当前模块时得到的就是模块exports对象，以下例子中导出的一个公有方法。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.hello = function()&#123;</span><br><span class="line">  console.log(&apos;Hello World&apos;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><blockquote>
-<p>通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通 对象。如果想改为一个函数的话，可以使用以下方式。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function()&#123;</span><br><span class="line">  console.log(&apos;hello world&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码中，模块默认导出对象被替换为一个函数。</p>
-<h4 id="模块初始化"><a href="#模块初始化" class="headerlink" title="模块初始化"></a>模块初始化</h4><blockquote>
-<p>一个模块中的JS代码仅在模块第一次被使用时执行一次，并在执行过程中初始化模块的导出导出对象。之后，缓存起来的导出对象呗重复利用。<br>主模块<br>通过命令行参数传入给NodeJS已启动程序的模块被称为主模块。主模块负责调度组成整个程序的其他模块完成工作，例如通过以下命令启动程序时，main.js就是主程序。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var i = 0;</span><br><span class="line">function count()&#123;</span><br><span class="line">  return ++i;</span><br><span class="line">&#125;</span><br><span class="line">exports.count = count;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var counter1 = require(&apos;./util/counter&apos;);</span><br><span class="line">var counter2 = require(&apos;./util/counter&apos;);</span><br><span class="line">console.log(counter1.count());</span><br><span class="line">console.log(counter2.count());</span><br><span class="line">console.log(counter2.count());</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>可以看到，counter.js并没有因为被require了两次而初始化两次。</p>
-</blockquote>
-
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
 </article>
 
-<div class="article-nav prev-next-wrap clearfix">
+
+<article class="post">
     
-        <a href="/2018/04/15/二进制模块/" class="pre-post btn btn-default" title='二进制模块'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">二进制模块</span>
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2018/03/31/hello-world/">Hello World</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime="" title="">
+                    2018年03月31日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            
+                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+            
+        </p>
+    </div>
+    
+        <footer class="post-footer clearfix">
+            <div class="pull-left tag-list">
+                <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
         </a>
+    </span>
     
     
-        <a href="/2018/04/11/List/" class="next-post btn btn-default" title='List'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">List</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
     
 </div>
 
+            </div>
 
-    <div id="comments">
-        
-	<!--PC和WAP自适应版-->
-<div id="SOHUCS"></div>
-<script type="text/javascript">
-	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
-	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
-</script>	
-
-    </div>
+            <div class="post-permalink">
+                <a href="/2018/03/31/hello-world/" class="btn btn-default">阅读全文</a>
+            </div>
+        </footer>
+    
+</article>
 
 
+
+
+    <nav class="pagination" role="navigation">
+        <div id="page-nav">
+            <a class="extend prev" rel="prev" href="/page/2/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+        </div>
+    </nav>
 
 
 
