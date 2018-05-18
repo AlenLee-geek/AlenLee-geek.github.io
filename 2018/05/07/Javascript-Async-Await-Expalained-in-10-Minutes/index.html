@@ -170,7 +170,10 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <p>函数回调使用callback。<br>后来使用promise。<br>现在我们使用Async/Await。<br>1、why Async/Await<br>  Async -定义异步函数（async function someName(){})<br>  .自动把函数自动转换为Promise<br>  .当调用异步函数时，函数返回值会被resolve处理<br>  .异步函数内部可以使用 Await<br>  Await -暂停异步函数的执行（var result = await someAsyncCall();)<br>  .当使用在promise前面时，await等待promise完成，并返回Promise的结果<br>  .await只能和promise一起使用，不能和callback一起使用<br>  .await只能用在async函数中<br>2、Async/Await是否会取代Promise? No<br>   .Async/Await底层依然使用了Promise。<br>3、module对象<br>  在每个模块中，module的自由变量是一个指向表示当前模块的对象的引用，为了方便，module.exports也可以通过全局模块的exports对象访问。module实际上不是全局的，而是每个模块本地的。<br>  module.exports对象是由模块系统创建的，有时这是难以接受的；许多人呢希望他们的模块称为某个类的实例。为了实现这个，需要将期望导出的对象赋值给module.exports。注意，将期望的对象赋值给exports会简单地重新绑定本地exports变量，<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const EventEmitter = require(&apos;events&apos;);</span><br><span class="line">module.exports = new EventEmitter();</span><br><span class="line">setTimeout(()=&gt;&#123;</span><br><span class="line">  module.exports.emit(&apos;ready&apos;);</span><br><span class="line">  &#125;,1000);</span><br></pre></td></tr></table></figure></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const a = require(&apos;./a&apos;);</span><br><span class="line">a.on(&apos;ready&apos;,()=&gt;&#123;</span><br><span class="line">  console.log(&apos;模块 a 已准备好&apos;);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>  4、exports快捷方式<br>    exports变量是在模块的文件级别作用域内有效的，它在模块被执行前被赋予module.exports的值。</p>
+
     </div>
 
     <div class="post-footer">
@@ -301,7 +304,7 @@
         
     <div class="widget">
       <h3 class="title">Archives</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">April 2018</i></a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">March 2018</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">April 2018</i></a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">March 2018</i></a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

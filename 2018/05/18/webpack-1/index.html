@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>跟大流的小程序 | AlenLee&#39;s blogs</title>
+<title>webpack | AlenLee&#39;s blogs</title>
 
 
     <link rel="alternate" href="/atom.xml" title="AlenLee&#39;s blogs" type="application/atom+xml">
@@ -130,9 +130,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="跟大流的小程序">
+        <h1 id="webpack">
             
-	            跟大流的小程序
+	            webpack
             
         </h1>
         <div class="post-meta">
@@ -160,7 +160,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/05/02</span>
+            <span class="date-meta">2018/05/18</span>
         </span>
     
 </div>
@@ -170,7 +170,42 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <p>webpack中的核心概念：</p>
+<ul>
+<li>Entry 入口</li>
+<li>Output 输出结果</li>
+<li>Loader 模块转换器</li>
+<li>Module 模块</li>
+<li>Chunk 代码块</li>
+<li>Plugin 插件</li>
+</ul>
+<p>Entry<br> entry 是配置模块的入口，它指示Webpack执行构建的第一步。<br> 可以在配置文件中配置entry属性，来指定一个或多个入口点</p>
+<p> entry类型有三种：字符串、数组、对象。</p>
+<ul>
+<li>String ：“./src/entry”入口模块的文件路径，可以是相对路径</li>
+<li>aray:[“./src/entry1”,”./src/entry2”]入口模块的文件路径，可以是相对路径。与字符串类型不同的而是数组可将多个文件打包为一个文件</li>
+<li>Object：{a:’./src/entry-a’,b:[‘./src/entry-b1’,’./app/entry-b2’]}配置多个入口，每个入口有一个chunk</li>
+</ul>
+<p>Output<br>  output配置如何输入最终想要的代码。output是一个Object，里面包含一系列配置项。</p>
+<pre><code>- filename 用于输出文件的文件名。
+- path 目标输出木笔哦啊的绝对路径，必须是绝对路径
+</code></pre><p>module、Loader<br>  module配置如何处理模块<br>配置Loader<br>  Loader可以看做具有文件转换功能的翻译官，配置里的module.rules数组配置了一组规则，告诉webpack在遇到哪些文件时使用哪些Loader去加载和转换。</p>
+<ul>
+<li>use属性的值需要是一个由Loader名称组成的数组，Loader的执行顺序是由后到前的；</li>
+<li><p>每一个Loader都可以URL querystring的方式传入参数，例如css-loader?minimize中的minimize告诉css-loader要开启css压缩。<br>Plugins<br>Plugin用于扩展Webpack功能，各种各样的Plugin几乎让Webpack可以做任何构建相关的事情。<br>配置Plugin<br>Plugin的配置很简单，plugins配置项接受一个数组，数组里每一项都是一个要使用的Plugin的实例，Plugin需要的参数通过构造函数传入。</p>
+<p>当然使用Plugin的难点在于掌握Plugin本身提供的配置项，而不是如何在webpack中接入Plugin。</p>
+</li>
+</ul>
+<p>chunk<br>  chunk,代码块，即打包后输出的文件。<br>  Webpack会为每个Chunk取一个名称，可以根据Chunk的名称来区分输出的文件名。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename:&apos;[name].js&apos;</span><br></pre></td></tr></table></figure></p>
+<p>  一个入口文件，默认chunkname为main。除了内置变量name,与chunck相关的变量还有：</p>
+<ul>
+<li>id Chunk的唯一标识，从0开始</li>
+<li>name Chunk的名称</li>
+<li>hash Chunk的唯一标识的Hash值</li>
+<li>chunkhash Chunk内容的Hash值<br>简单配置一个webpack<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"> //./webpack.config.js</span><br><span class="line"> module.exports =&#123;</span><br><span class="line">   mode:&apos;development&apos;,</span><br><span class="line">   entry:&#123;</span><br><span class="line">     app1:&apos;./src/index.js&apos;,</span><br><span class="line">     app2:&apos;./src/main.js&apos;</span><br><span class="line">   &#125;,</span><br><span class="line">   output:&#123;</span><br><span class="line">     path:__dirname + &apos;/dist&apos;,</span><br><span class="line">     filename:&apos;[hash][name].js&apos;</span><br><span class="line">   &#125;,</span><br><span class="line">   module:&#123;</span><br><span class="line">     rules:[</span><br><span class="line">       &#123;</span><br><span class="line">         test:/\.css$/,</span><br><span class="line">         loader:&apos;style-loader!css-loader&apos;</span><br><span class="line">       &#125;,</span><br><span class="line">       &#123;</span><br><span class="line">         test:/\.js$/,</span><br><span class="line">         use:&apos;babel-loader&apos;,</span><br><span class="line">         exclude:/node_modules/</span><br><span class="line">       &#125;</span><br><span class="line">     ]</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;;</span><br><span class="line"> // ./src/index.css</span><br><span class="line"> html&#123;</span><br><span class="line">   background:#333;</span><br><span class="line">   color:#fff;</span><br><span class="line"> &#125;</span><br><span class="line"> // ./src/index.js</span><br><span class="line"> import &apos;./index.css&apos;</span><br><span class="line"> const sleep = async time =&gt; awai new Promise( resolve =&gt; &#123;</span><br><span class="line">   setTimeout( () =&gt; &#123;</span><br><span class="line">     console.log(&apos;等待$&#123;time&#125;s&apos;)</span><br><span class="line">     return resolve</span><br><span class="line">     &#125;,time*1000)</span><br><span class="line">   &#125;)</span><br><span class="line">   sleep(5)</span><br><span class="line">   console.log(&apos;Success!&apos;)</span><br><span class="line">// ./src/main.js</span><br><span class="line">const sleep = async time =&gt; await new Promise( resolve =&gt; &#123;</span><br><span class="line">  setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;等待$&#123;time&#125;s&apos;)</span><br><span class="line">    return resolve</span><br><span class="line">    &#125;,time*1000 )</span><br><span class="line">  &#125;)</span><br><span class="line">  sleep(2)</span><br><span class="line"></span><br><span class="line">  // .babelrc&#123;</span><br><span class="line">    &quot;presets&quot;:[</span><br><span class="line">       &quot;&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
     </div>
 
     <div class="post-footer">
@@ -187,15 +222,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/05/04/http-https/" class="pre-post btn btn-default" title='http&https'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">http&https</span>
-        </a>
     
-    
-        <a href="/2018/04/28/Web-Session/" class="next-post btn btn-default" title='Web Session'>
+        <a href="/2018/05/08/JS模块化/" class="next-post btn btn-default" title='JS模块化'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Web Session</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">JS模块化</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

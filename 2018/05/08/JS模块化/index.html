@@ -176,6 +176,7 @@
 <p>2.2 通过System.import API的方式<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.import(&apos;some_module&apos;).then(some_module =&gt;&#123;</span><br><span class="line">  // Use some_module</span><br><span class="line">  &#125;).catch(error =&gt;&#123;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
 <p>export的语法，与CommonJS很像，只不过没有了module这个对象，而是直接到调用export。可以exportr如何一个函数、变量、对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export function abc()&#123;&#125;//export 一个命名的function</span><br><span class="line">export default function()&#123;&#125; //export default function</span><br><span class="line">export num = 123 //export 一个数值</span><br><span class="line">export obj = &#123;&#125;</span><br><span class="line">export &#123; obj as default &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import expt from &apos;expt&apos;//default export</span><br><span class="line">import &#123; default as myModule &#125; from &apos;expt&apos; // rename</span><br><span class="line">import &#123; abc,num,obj &#125; from &apos;expt&apos;</span><br></pre></td></tr></table></figure>
+<p>3、实践<br>  如果现在使用ES6,可以选择动态加载模块system.js或者browserify的预编译方法。<br>  使用system.js+babel动态加载依赖。system.js是ES6动态模块加载的一个实现。写了一个小DEMO：<br>  项目初始化<br>  bower install babel system.js –save<br>  使用gulp+browserify+babel预编译。gulp是一个Node.js平台上的任务管理平台。预编译要做很多配置。</p>
 
     </div>
 
@@ -192,6 +193,11 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/18/webpack-1/" class="pre-post btn btn-default" title='webpack'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">webpack</span>
+        </a>
     
     
         <a href="/2018/05/07/Javascript-Async-Await-Expalained-in-10-Minutes/" class="next-post btn btn-default" title='Javascript Async/Await Expalained in 10 Minutes'>
@@ -302,7 +308,7 @@
         
     <div class="widget">
       <h3 class="title">Archives</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">April 2018</i></a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">March 2018</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">May 2018</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">April 2018</i></a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">March 2018</i></a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
