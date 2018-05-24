@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>Archives: 2018 | AlenLee&#39;s blogs</title>
+<title>V8 | AlenLee&#39;s blogs</title>
 
 
     <link rel="alternate" href="/atom.xml" title="AlenLee&#39;s blogs" type="application/atom+xml">
@@ -126,51 +126,96 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2018年 月</h1>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="V8">
+            
+	            V8
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
         
-          <li class="post-items" _href="/2018/04/14/node/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/14/node/"> node </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/List/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/List/"> List </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/Array/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/Array/"> Array </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/10/立即执行函数/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/10/立即执行函数/"> 立即执行函数 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/03/31/hello-world/">
-            <h3 class="post-item-title">
-            	<a href="/2018/03/31/hello-world/"> Hello World </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/21</span>
+        </span>
+    
 </div>
 
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/archives/2018/page/2/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><span class="page-number current">3</span>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>V8引擎在内部也使用了很多个线程：</p>
+<ul>
+<li>主线程完成你所期望的任务：获取你的代码，然后编译执行</li>
+<li>还有一个单独的线程用于编译，以便主线程可以继续执行，而前者就能够优化代码</li>
+<li>一个Profiler(分析器)线程，它会告诉运行时在那些方法上我们花了很多的时间，以便Crankshaft可以去优化它们</li>
+<li>还有一些线程处理垃圾回收扫描<br>当第一次执行JavaScript代码的时候，V8利用full-codegen直接将解析的JavaScript代码不经过任何转换翻译成机器码。这使得它可以非常快速的开始执行机器码，请注意，V8不使用任何中间字节码标识，从而不需要解释器。</li>
+</ul>
+<p>当你的代码已经运行了一段时间了，分析器线程已经收集了足够的数据来告诉运行时哪个方法应该被优化。<br>然后，Crankshaft在另一个线程开始优化。它将JavaScript抽象语法树转换成一个叫Hydrogen的高级静态单元分配表示（SSA），并且尝试去优化这个HyDrogen图，大多数优化都是在这个级完成。</p>
+<p>解析事件循环<br>我们先从一个起卦的说法谈起–尽管JavaScript运行异步的代码(setTimeout)，但直到ES6,javaScript自身从没有过任何关于异步的直接概念。JavaScript引擎只会在任意时刻执行一个程序。<br>关于JavaScript引擎是如何工作的更多细节（特别是V8引擎）<br>那么，谁会告诉JS引擎去执行你的程序？事实上，JS引擎不是单独运行的–它运行在一个宿主环境中，对于大多数开发者来说就是经典的浏览器和Node.js.实际上，如今，javaScript被应用到了从机器人到灯泡的各种设备上，每个设备都表好似了一种不同类型的JS引擎的宿主环境。<br> 所有的环境都有衣蛾共同点，就是都拥有一个时间循环的内置机制，它随着时间的推移每次都去调用JS引擎处理程序中多个块的执行。</p>
+<p>这意味着JS引擎只是任意的JS代码按需执行的环境，是它周围的环境来调度这些事情（JS代码执行）。<br>所以，比如当你的JavaScript程序发出了一个Ajax请求去服务器获取数据，你在一个函数（回调）中写入‘response’代码，然后js引擎就会告诉宿主环境：‘嘿，我现在要暂停执行了,但是当你完成了这个网络请求，并并且获取到数据的时候，请回来调用这个函数。’<br>然后浏览器设置UI网络响应的监听，当它有东西返回给你的时候，它将会把回调函数插入到事件循环队列里然后执行。</p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
         </div>
-    </nav>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/05/18/回归Node/" class="next-post btn btn-default" title='回归Node'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">回归Node</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
+
+    </div>
 
 
 

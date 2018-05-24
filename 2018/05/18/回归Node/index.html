@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>Archives: 2018 | AlenLee&#39;s blogs</title>
+<title>回归Node | AlenLee&#39;s blogs</title>
 
 
     <link rel="alternate" href="/atom.xml" title="AlenLee&#39;s blogs" type="application/atom+xml">
@@ -126,51 +126,99 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2018年 月</h1>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="回归Node">
+            
+	            回归Node
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+            
+        </span>
+    </span>
+    
+
+    
         
-          <li class="post-items" _href="/2018/04/14/node/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/14/node/"> node </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/List/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/List/"> List </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/11/Array/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/11/Array/"> Array </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/04/10/立即执行函数/">
-            <h3 class="post-item-title">
-            	<a href="/2018/04/10/立即执行函数/"> 立即执行函数 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/03/31/hello-world/">
-            <h3 class="post-item-title">
-            	<a href="/2018/03/31/hello-world/"> Hello World </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/18</span>
+        </span>
+    
 </div>
 
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/archives/2018/page/2/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><span class="page-number current">3</span>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>Node.js 和 V8之间的关系是什么？可以在没有V8的情况下运行Node呢？<br>V8是javascript的引擎，给Javascript提供了一个良好的运行环境。得益于V8的性能，<br>在任何一个Node.js文件中声明一个全局变量时，它对于所有模块都是真的全局吗？<br>这里的声明全局变量是和javascript的var比较的，Node每个文件都有自己的作用域，你在文件内通过var声明的全局变量只能用在该文件内，不过你可以像JavaScript的window一样给global赋值。</p>
+<p>什么是调用栈？ 它是V8的一部分吗？<br>调用栈说白了就是存放要调用的函数的栈，它将决定函数的执行顺序。它和JavaScript的调用栈是一样的，不过在node中，它是由V8来处理的。<br>前者会把函数排在事件队列里I/O操作的前面，而后者直接放在了事件队列里第一的位置上。<br>如何使异步函数返回值？<br>  回调可以与Promise一起使用的吗？他们还是同一种方式还是两种不同的方式？<br>Promise原理就知道回调对于Promise的重要性。</p>
+<p>什么Nod模块由许多其他Node模块实现？<br>spawn、exec和fork的主要区别是什么？</p>
+<p>spawn和exec其实区别不大，都是执行shell命令，只不过前者返回的是stream后者是Buffer。<br>而fork就如linux的fork一样，它会new一个V8的实例来执行命令</p>
+<p>集群模块如何工作？它与使用负载均衡有何不同？<br>集群模块是在一个主机上fork一堆worker来跑的，而负载均衡是跨主机的。</p>
+<p>开启staged功能，就是已经开发的隐藏功能。<br>如何读取和检查Node.js进程的内存使用情况？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.memoryUsage()</span><br></pre></td></tr></table></figure></p>
+<p>当调用栈和事件循环队列都为空时，Node将做什么？<br>什么是V8对象和函数模板？<br>这一块其实涉及到V8的模板的概念，C++和JavaScript的设计理念在函数这里有很大的不同，所以V8需要做一些处理。模板是一个上下文中JavaScript函数和对象的蓝图，而V8则把C++的DOM节点通过模板来包装成JavaScript的对象。<br>对象模板和函数模板<br>对象模板是用来产出对象的，而函数模板则产出函数。</p>
+<p>什么是libuv,Node.js如何使用它？<br>libuv是一个可以跨平台的、高性能的、事件驱动的I/O库，它给Node提供事件循环还有I/O操作等等。文件系统和child process也是它提供的。</p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
         </div>
-    </nav>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/21/V8/" class="pre-post btn btn-default" title='V8'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">V8</span>
+        </a>
+    
+    
+        <a href="/2018/05/18/webpack-1/" class="next-post btn btn-default" title='webpack'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">webpack</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
+
+    </div>
 
 
 

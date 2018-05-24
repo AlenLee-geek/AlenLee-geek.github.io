@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://AlenLee-geek.github.io.git/"/>
-  <updated>2018-05-18T07:11:50.726Z</updated>
+  <updated>2018-05-24T07:25:18.377Z</updated>
   <id>https://AlenLee-geek.github.io.git/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>V8</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/05/21/V8/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/05/21/V8/</id>
+    <published>2018-05-21T02:31:05.000Z</published>
+    <updated>2018-05-24T07:25:18.377Z</updated>
+    
+    <content type="html"><![CDATA[<p>V8引擎在内部也使用了很多个线程：</p><ul><li>主线程完成你所期望的任务：获取你的代码，然后编译执行</li><li>还有一个单独的线程用于编译，以便主线程可以继续执行，而前者就能够优化代码</li><li>一个Profiler(分析器)线程，它会告诉运行时在那些方法上我们花了很多的时间，以便Crankshaft可以去优化它们</li><li>还有一些线程处理垃圾回收扫描<br>当第一次执行JavaScript代码的时候，V8利用full-codegen直接将解析的JavaScript代码不经过任何转换翻译成机器码。这使得它可以非常快速的开始执行机器码，请注意，V8不使用任何中间字节码标识，从而不需要解释器。</li></ul><p>当你的代码已经运行了一段时间了，分析器线程已经收集了足够的数据来告诉运行时哪个方法应该被优化。<br>然后，Crankshaft在另一个线程开始优化。它将JavaScript抽象语法树转换成一个叫Hydrogen的高级静态单元分配表示（SSA），并且尝试去优化这个HyDrogen图，大多数优化都是在这个级完成。</p><p>解析事件循环<br>我们先从一个起卦的说法谈起–尽管JavaScript运行异步的代码(setTimeout)，但直到ES6,javaScript自身从没有过任何关于异步的直接概念。JavaScript引擎只会在任意时刻执行一个程序。<br>关于JavaScript引擎是如何工作的更多细节（特别是V8引擎）<br>那么，谁会告诉JS引擎去执行你的程序？事实上，JS引擎不是单独运行的–它运行在一个宿主环境中，对于大多数开发者来说就是经典的浏览器和Node.js.实际上，如今，javaScript被应用到了从机器人到灯泡的各种设备上，每个设备都表好似了一种不同类型的JS引擎的宿主环境。<br> 所有的环境都有衣蛾共同点，就是都拥有一个时间循环的内置机制，它随着时间的推移每次都去调用JS引擎处理程序中多个块的执行。</p><p>这意味着JS引擎只是任意的JS代码按需执行的环境，是它周围的环境来调度这些事情（JS代码执行）。<br>所以，比如当你的JavaScript程序发出了一个Ajax请求去服务器获取数据，你在一个函数（回调）中写入‘response’代码，然后js引擎就会告诉宿主环境：‘嘿，我现在要暂停执行了,但是当你完成了这个网络请求，并并且获取到数据的时候，请回来调用这个函数。’<br>然后浏览器设置UI网络响应的监听，当它有东西返回给你的时候，它将会把回调函数插入到事件循环队列里然后执行。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;V8引擎在内部也使用了很多个线程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主线程完成你所期望的任务：获取你的代码，然后编译执行&lt;/li&gt;
+&lt;li&gt;还有一个单独的线程用于编译，以便主线程可以继续执行，而前者就能够优化代码&lt;/li&gt;
+&lt;li&gt;一个Profiler(分析器)线程，它会告诉运行
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>回归Node</title>
+    <link href="https://AlenLee-geek.github.io.git/2018/05/18/%E5%9B%9E%E5%BD%92Node/"/>
+    <id>https://AlenLee-geek.github.io.git/2018/05/18/回归Node/</id>
+    <published>2018-05-18T07:15:16.000Z</published>
+    <updated>2018-05-21T02:30:40.853Z</updated>
+    
+    <content type="html"><![CDATA[<p>Node.js 和 V8之间的关系是什么？可以在没有V8的情况下运行Node呢？<br>V8是javascript的引擎，给Javascript提供了一个良好的运行环境。得益于V8的性能，<br>在任何一个Node.js文件中声明一个全局变量时，它对于所有模块都是真的全局吗？<br>这里的声明全局变量是和javascript的var比较的，Node每个文件都有自己的作用域，你在文件内通过var声明的全局变量只能用在该文件内，不过你可以像JavaScript的window一样给global赋值。</p><p>什么是调用栈？ 它是V8的一部分吗？<br>调用栈说白了就是存放要调用的函数的栈，它将决定函数的执行顺序。它和JavaScript的调用栈是一样的，不过在node中，它是由V8来处理的。<br>前者会把函数排在事件队列里I/O操作的前面，而后者直接放在了事件队列里第一的位置上。<br>如何使异步函数返回值？<br>  回调可以与Promise一起使用的吗？他们还是同一种方式还是两种不同的方式？<br>Promise原理就知道回调对于Promise的重要性。</p><p>什么Nod模块由许多其他Node模块实现？<br>spawn、exec和fork的主要区别是什么？</p><p>spawn和exec其实区别不大，都是执行shell命令，只不过前者返回的是stream后者是Buffer。<br>而fork就如linux的fork一样，它会new一个V8的实例来执行命令</p><p>集群模块如何工作？它与使用负载均衡有何不同？<br>集群模块是在一个主机上fork一堆worker来跑的，而负载均衡是跨主机的。</p><p>开启staged功能，就是已经开发的隐藏功能。<br>如何读取和检查Node.js进程的内存使用情况？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.memoryUsage()</span><br></pre></td></tr></table></figure></p><p>当调用栈和事件循环队列都为空时，Node将做什么？<br>什么是V8对象和函数模板？<br>这一块其实涉及到V8的模板的概念，C++和JavaScript的设计理念在函数这里有很大的不同，所以V8需要做一些处理。模板是一个上下文中JavaScript函数和对象的蓝图，而V8则把C++的DOM节点通过模板来包装成JavaScript的对象。<br>对象模板和函数模板<br>对象模板是用来产出对象的，而函数模板则产出函数。</p><p>什么是libuv,Node.js如何使用它？<br>libuv是一个可以跨平台的、高性能的、事件驱动的I/O库，它给Node提供事件循环还有I/O操作等等。文件系统和child process也是它提供的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Node.js 和 V8之间的关系是什么？可以在没有V8的情况下运行Node呢？&lt;br&gt;V8是javascript的引擎，给Javascript提供了一个良好的运行环境。得益于V8的性能，&lt;br&gt;在任何一个Node.js文件中声明一个全局变量时，它对于所有模块都是真的全局吗
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>webpack</title>
@@ -387,50 +433,6 @@
       
         &lt;h4 id=&quot;二进制模块&quot;&gt;&lt;a href=&quot;#二进制模块&quot; class=&quot;headerlink&quot; title=&quot;二进制模块&quot;&gt;&lt;/a&gt;二进制模块&lt;/h4&gt;&lt;blockquote&gt;
 &lt;p&gt;虽然一般我们使用JS编写模块，但NodeJS也支持使用C/C++编写二进制模块，编译好的二
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>node</title>
-    <link href="https://AlenLee-geek.github.io.git/2018/04/14/node/"/>
-    <id>https://AlenLee-geek.github.io.git/2018/04/14/node/</id>
-    <published>2018-04-14T13:37:45.000Z</published>
-    <updated>2018-04-14T15:00:11.733Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="NodeJS基础"><a href="#NodeJS基础" class="headerlink" title="NodeJS基础"></a>NodeJS基础</h5><blockquote><p>JS是脚本语言，脚本语言都是需要一个额解析器才能运行。对于写在HTML页面里面的JS，浏览器充当了解析器的角色、而对于需要独立运行的JS，NodeJS就是一个解析器。<br>每一种解析器都是一个运行环境，不但允许JS定义各种数据结构们进行各种计算，还允许JS使用运行环境提供的内置队形和方法做一些事情。例如运行在浏览器中的JS的用途是是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。</p></blockquote><h5 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h5><blockquote><p>尽管存在，听说可以直接运行JS文件，但多数同学在接触新东西时，首先关心的是有啥用处，以及能带来什么价值。<br>NodeJS的作者说，他创造NodeJS的目的是为了实现高性能Web服务器。他首先看重的是事件机制和异步IO模型的优越性，而不是JS。但是他需要选择一种编程语言实现他的想法，这种编程语言不能自带IO功能，并且需要能良好支持事件机制，JS没有自带IO功能，天生就用于处理浏览器中的DOM事件，并且拥有一群程序员，因此就称为了天然的选择。<br>NodeJS在服务端活跃起来，出现了大批基于NodeJS的Web服务。而另一方面，NodeJS让前端众如获神器，终于可以让自己的能力覆盖范围跳出浏览器窗口，更大批的前端工具如雨后春笋。<br>因此，对于前端而言，虽然不是人人都要拿NodeJS写一个服务器程序，但简单可至使用 命令交互模式调试JS代码片段，复杂可至编写工具提升工作效率。<br>编写稍大一点的程序时一般都会讲代码模块化。在NodeJS中，一般将代码合理拆分到不同的JS文件中，每一个文件及时一个模块，而<strong>文件路径就是模块名</strong>。<br>在编写每一个模块时，都有require、exports、module三个预先定义好的变量可以使用。</p></blockquote><h5 id="require"><a href="#require" class="headerlink" title="require"></a>require</h5><blockquote><p>require 函数用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者绝对路径（/或者C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略，</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var foo1 = require(&apos;./foo&apos;);</span><br><span class="line">var foo2 = require(&apos;./foo.js&apos;);</span><br><span class="line">var foo3 = require(&apos;./home/user/foo&apos;);</span><br><span class="line">var foo4 = require(&apos;./home/user/foo.js&apos;);</span><br></pre></td></tr></table></figure><blockquote><p>另外，可以使用以下方式加载和使用一个JSON文件</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var data = require(&apos;./data.json&apos;);</span><br></pre></td></tr></table></figure><h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><blockquote><p>exports对象是当前模块导出对象，用于导出导出模块公有方法和属性，别的模块通过require函数使用当前模块时得到的就是模块exports对象，以下例子中导出的一个公有方法。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.hello = function()&#123;</span><br><span class="line">  console.log(&apos;Hello World&apos;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><blockquote><p>通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通 对象。如果想改为一个函数的话，可以使用以下方式。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function()&#123;</span><br><span class="line">  console.log(&apos;hello world&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以上代码中，模块默认导出对象被替换为一个函数。</p><h4 id="模块初始化"><a href="#模块初始化" class="headerlink" title="模块初始化"></a>模块初始化</h4><blockquote><p>一个模块中的JS代码仅在模块第一次被使用时执行一次，并在执行过程中初始化模块的导出导出对象。之后，缓存起来的导出对象呗重复利用。<br>主模块<br>通过命令行参数传入给NodeJS已启动程序的模块被称为主模块。主模块负责调度组成整个程序的其他模块完成工作，例如通过以下命令启动程序时，main.js就是主程序。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var i = 0;</span><br><span class="line">function count()&#123;</span><br><span class="line">  return ++i;</span><br><span class="line">&#125;</span><br><span class="line">exports.count = count;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var counter1 = require(&apos;./util/counter&apos;);</span><br><span class="line">var counter2 = require(&apos;./util/counter&apos;);</span><br><span class="line">console.log(counter1.count());</span><br><span class="line">console.log(counter2.count());</span><br><span class="line">console.log(counter2.count());</span><br></pre></td></tr></table></figure><blockquote><p>可以看到，counter.js并没有因为被require了两次而初始化两次。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;NodeJS基础&quot;&gt;&lt;a href=&quot;#NodeJS基础&quot; class=&quot;headerlink&quot; title=&quot;NodeJS基础&quot;&gt;&lt;/a&gt;NodeJS基础&lt;/h5&gt;&lt;blockquote&gt;
-&lt;p&gt;JS是脚本语言，脚本语言都是需要一个额解析器才能运行。对于写在HT
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>List</title>
-    <link href="https://AlenLee-geek.github.io.git/2018/04/11/List/"/>
-    <id>https://AlenLee-geek.github.io.git/2018/04/11/List/</id>
-    <published>2018-04-11T03:42:44.000Z</published>
-    <updated>2018-04-14T13:38:29.185Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>列表的抽象数据类型定义<br>为了设计列表的抽象数据类型，需要给出列表的定义，包括列表应该拥有哪些属性，应该在列表上执行哪些操作。<br>列表是一组有序的数据，每个列表中的数据项称为元素。在JavaScript中，列表中元素可以是任意数据类型，<br>类表中可以保存多少元素并没有事先限定，实际使用时元素的数量受到程序内存的限制。</li><li>listSize保存列表中袁术的个数，可以在雷彪末尾append一个元素，也可以在一个给定元素后或列表的其实位置insert<br>一个元素，使用remove方法从列表中删除元素，使用clear方法清空列表中所有的元素。</li><li>toString()方法显示列表中所有的元素，使用getElement()方法显示当前元素。</li><li>append：给列表添加元素。</li><li>remove：从列表中删除元素。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;列表的抽象数据类型定义&lt;br&gt;为了设计列表的抽象数据类型，需要给出列表的定义，包括列表应该拥有哪些属性，应该在列表上执行哪些操作。&lt;br&gt;列表是一组有序的数据，每个列表中的数据项称为元素。在JavaScript中，列表中元素可以是任意数据类型，&lt;br&gt;类表中可以
       
     
     </summary>
